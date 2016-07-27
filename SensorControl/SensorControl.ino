@@ -16,6 +16,13 @@ void printBrightness(void){   //밝기값을 출력하는 함수
   val = analogRead(POT);
   val = map(val, MIN_LIGHT, MAX_LIGHT, 255, 0);   //8비트 값으로 맵핑
   val = constrain(val, 0, 255);
+  lcd.setCursor(11,0);
+  lcd.print("   ");
+  lcd.setCursor(11,0);
+  lcd.print(val);
+  Serial.print("Brigtness : ");
+  Serial.println(val);
+  delay(500);
 }
 
 boolean debounce(boolean last){
@@ -59,4 +66,7 @@ void loop() {
       printScreen(screen);
   }
   lastBTN = currentBTN;
+  if(screen == 0){
+    printBrightness();   
+  }
 }
